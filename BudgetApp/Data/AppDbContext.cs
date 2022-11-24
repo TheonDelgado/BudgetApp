@@ -20,11 +20,27 @@ namespace BudgetApp.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Transaction>(transaction =>
+            {
+                transaction.HasKey(t => t.Id);
+
+                transaction.HasOne(t => t.Category)
+                    .WithMany()
+                    .HasForeignKey(t => t.CategoryId)
+                    .HasPrincipalKey(c => c.Id);
+            });
+
+            modelBuilder.Entity<Category>(category =>
+            {
+                category.HasKey(c => c.Id);
+            });
+            
+            
             //seed categories
-            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 1, CategoryName = "Business" });
-            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 2, CategoryName = "Food" });
-            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 3, CategoryName = "Personal" });
-            modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 4, CategoryName = "Other" });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 1, CategoryName = "Business" });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 2, CategoryName = "Food" });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 3, CategoryName = "Personal" });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 4, CategoryName = "Other" });
         }
     }
 }
