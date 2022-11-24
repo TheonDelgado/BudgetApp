@@ -13,10 +13,5 @@ namespace BudgetApp.Models.ViewModels
         public DateTime Date { get; set; }
         public string Name { get; set; }
         public float Amount { get; set; }
-
-        public AddTransactionViewModel(ICategoryRepository categoryRepository)
-        {
-            Categories = categoryRepository.AllCategories.ToList<Category>();
-        }
     }
 }
