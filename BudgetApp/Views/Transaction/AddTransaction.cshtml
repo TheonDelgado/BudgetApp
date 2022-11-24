@@ -5,7 +5,7 @@
 
     foreach(var category in Model.Categories)
     {
-      list.Add(new SelectListItem{ Text = category.CategoryName});
+      list.Add(new SelectListItem{ Text = category.CategoryName, Value = category.CategoryId.ToString()});
     }
 }
 

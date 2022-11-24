@@ -9,7 +9,7 @@ namespace BudgetApp.Models.ViewModels
     public class AddTransactionViewModel
     {
         public List<Category> Categories { get; set; }
-        public Category SelectedCategory { get; set; }
+        public int SelectedCategory { get; set; }
         public DateTime Date { get; set; }
         public string Name { get; set; }
         public float Amount { get; set; }

@@ -35,12 +35,17 @@ namespace BudgetApp.Controllers
         [HttpPost]
         public IActionResult AddTransaction(AddTransactionViewModel addTransactionViewModel) 
         {
-            Console.WriteLine(addTransactionViewModel.SelectedCategory.CategoryName);
-            // var transaction = new Transaction()
-            // {
-            //     Id = Guid.NewGuid(),
+            var transaction = new Transaction()
+            {
+                Id = Guid.NewGuid(),
+                CategoryId = addTransactionViewModel.SelectedCategory,
+                Date = DateTime.Now,
+                Name = addTransactionViewModel.Name,
+                Amount = addTransactionViewModel.Amount
+            };
 
-            // }
+            context.Transactions.Add(transaction);
+            context.SaveChanges();
 
             return Redirect("~/Home/Index");
         }
