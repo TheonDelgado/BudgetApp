@@ -10,6 +10,7 @@
       <th scope="col">Date</th>
       <th scope="col">Name</th>
       <th scope="col">Amount</th>
+      <th scope="col">CategoryId</th>
     </tr>
   </thead>
 
@@ -20,7 +21,22 @@
         <td>@transaction.Id</td>
         <td>@transaction.Name</td>
         <td>@transaction.Amount</td>
-        <td>@transaction.CategoryId</td>
+        @if(@transaction.CategoryId == 1)
+        {
+          <td>Business</td>
+        }
+        else if(@transaction.CategoryId == 2)
+        {
+          <td>Food</td>
+        }
+        else if(@transaction.CategoryId == 3)
+        {
+          <td>Personal</td>
+        }
+        else 
+        {
+          <td>Other</td>
+        }
       </tr>
    }
   </tbody>
