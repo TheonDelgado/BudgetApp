@@ -40,3 +40,7 @@ body {
 .addTransactionBreak { 
   max-width: 280px;
 }
+
+#main-table {
+  max-width: 1000px;
+}

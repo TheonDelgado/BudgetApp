@@ -10,12 +10,12 @@ using BudgetApp.Data;
 
 namespace BudgetApp.Controllers
 {
-    public class TransactionController : Controller
+    public class NewTransactionController : Controller
     {
         private readonly ICategoryRepository categoryRepository;
         private readonly AppDbContext context;
 
-        public TransactionController(ICategoryRepository categoryRepository, AppDbContext context)
+        public NewTransactionController(ICategoryRepository categoryRepository, AppDbContext context)
         {   
             this.categoryRepository = categoryRepository;
             this.context = context;
@@ -47,7 +47,7 @@ namespace BudgetApp.Controllers
             context.Transactions.Add(transaction);
             context.SaveChanges();
 
-            return Redirect("~/Home/Index");
+            return RedirectToAction("Index");
         }
     }
 }
