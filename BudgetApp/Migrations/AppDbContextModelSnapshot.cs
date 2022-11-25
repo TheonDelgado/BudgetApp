@@ -24,54 +24,55 @@ namespace BudgetApp.Migrations
 
             modelBuilder.Entity("BudgetApp.Models.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryId = 1,
-                            CategoryName = "Business"
-                        },
-                        new
-                        {
-                            CategoryId = 2,
-                            CategoryName = "Food"
-                        },
-                        new
-                        {
-                            CategoryId = 3,
-                            CategoryName = "Personal"
-                        },
-                        new
-                        {
-                            CategoryId = 4,
-                            CategoryName = "Other"
-                        });
-                });
-
-            modelBuilder.Entity("BudgetApp.Models.Transaction", b =>
-                {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryName = "Business"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryName = "Food"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryName = "Personal"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryName = "Other"
+                        });
+                });
+
+            modelBuilder.Entity("BudgetApp.Models.Transaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<float>("Amount")
                         .HasColumnType("real");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryId1")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -84,14 +85,22 @@ namespace BudgetApp.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("CategoryId1");
+
                     b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("BudgetApp.Models.Transaction", b =>
                 {
                     b.HasOne("BudgetApp.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BudgetApp.Models.Category", null)
                         .WithMany("Transactions")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId1");
 
                     b.Navigation("Category");
                 });

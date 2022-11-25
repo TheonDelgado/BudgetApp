@@ -5,19 +5,28 @@
 
     foreach(var category in Model.Categories)
     {
-      list.Add(new SelectListItem{ Text = category.CategoryName, Value = category.CategoryId.ToString()});
+      list.Add(new SelectListItem{ Text = category.CategoryName, Value = category.Id.ToString()});
     }
 }
 
 <form method="post" asp-action="AddTransaction">
   <div class="form-row align-items-center">
     <div class="col-auto my-1">
-      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Choose category: </label>
-      @Html.DropDownListFor(model => model.SelectedCategory, list)
-      <label class="sr-only" for="">Name</label>
-      @Html.TextBoxFor(model => model.Name)
-      <label class="sr-only" for="">Amount</label>
-      @Html.TextBoxFor(model => model.Amount)
+      <div class="col addTransactionPage">
+        <label class="sr-only" for="">Choose Category: &nbsp;</label>
+        @Html.DropDownListFor(model => model.SelectedCategory, list)
+      </div>
+      <br><hr class="addTransactionBreak">
+      <div class="col addTransactionPage">
+        <label class="sr-only" for="">Name: &nbsp</label>
+        <input type="text" id="name" name="Name" size="12">
+      </div>
+      <br><hr class="addTransactionBreak">
+      <div class="col addTransactionPage">
+        <label class="sr-only" for="">Amount: &nbsp</label>
+        <input type="text" id="amount" name="Amount" size="12">
+      </div>
+      <br><hr class="addTransactionBreak">
     </div>
     <div class="col-auto">
       <button type="submit" class="btn btn-primary mb-2">Submit</button>

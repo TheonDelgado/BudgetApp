@@ -22,8 +22,21 @@ body {
 }
 
 .appimg {
-  boder-radius: 8px;
+  border-radius: 8px;
   max-height: 85px;
   max-width: 85px;
   padding: 12px;
+}
+
+.addTransactionPage {
+  padding: 12px;
+  max-width: 250px;
+  max-height: 75px;
+  justify-content: start;
+  align-content: center;
+  display: flex;
+}
+
+.addTransactionBreak { 
+  max-width: 280px;
 }
