@@ -6,7 +6,7 @@ using BudgetApp.Models.Repositories;
 
 namespace BudgetApp.Models.ViewModels
 {
-    public class AddTransactionViewModel
+    public class NewTransactionViewModel
     {
         public List<Category> Categories { get; set; }
         public int SelectedCategory { get; set; }

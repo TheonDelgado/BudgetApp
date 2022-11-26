@@ -22,32 +22,32 @@ namespace BudgetApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddTransaction() 
+        public IActionResult NewTransaction() 
         {
-            var addTransactionViewModel = new AddTransactionViewModel()
+            var newTransactionViewModel = new NewTransactionViewModel()
             {
                 Categories = categoryRepository.AllCategories.ToList<Category>()
             };
 
-            return View(addTransactionViewModel);
+            return View(newTransactionViewModel);
         }
 
         [HttpPost]
-        public IActionResult AddTransaction(AddTransactionViewModel addTransactionViewModel) 
+        public IActionResult NewTransaction(NewTransactionViewModel newTransactionViewModel) 
         {
             var transaction = new Transaction()
             {
                 Id = Guid.NewGuid(),
-                CategoryId = addTransactionViewModel.SelectedCategory,
+                CategoryId = newTransactionViewModel.SelectedCategory,
                 Date = DateTime.Now,
-                Name = addTransactionViewModel.Name,
-                Amount = addTransactionViewModel.Amount
+                Name = newTransactionViewModel.Name,
+                Amount = newTransactionViewModel.Amount
             };
 
             context.Transactions.Add(transaction);
             context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return Redirect("~/Home/Index");
         }
     }
 }

@@ -1,4 +1,4 @@
-@model AddTransactionViewModel
+@model NewTransactionViewModel
 
 @{
   List<SelectListItem> list = new List<SelectListItem>();
@@ -9,24 +9,24 @@
     }
 }
 
-<form method="post" asp-action="AddTransaction">
+<form method="post" asp-action="NewTransaction">
   <div class="form-row align-items-center">
     <div class="col-auto my-1">
       <div class="col addTransactionPage">
         <label class="sr-only" for="">Choose Category: &nbsp;</label>
         @Html.DropDownListFor(model => model.SelectedCategory, list)
       </div>
-      <br><hr class="addTransactionBreak">
+      <br><hr class="newTransactionBreak">
       <div class="col addTransactionPage">
         <label class="sr-only" for="">Name: &nbsp</label>
         <input type="text" id="name" name="Name" size="12">
       </div>
-      <br><hr class="addTransactionBreak">
+      <br><hr class="newTransactionBreak">
       <div class="col addTransactionPage">
         <label class="sr-only" for="">Amount: &nbsp</label>
         <input type="text" id="amount" name="Amount" size="12">
       </div>
-      <br><hr class="addTransactionBreak">
+      <br><hr class="newTransactionBreak">
     </div>
     <div class="col-auto">
       <button type="submit" class="btn btn-primary mb-2">Submit</button>

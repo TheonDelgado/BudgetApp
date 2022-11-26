@@ -44,3 +44,7 @@ body {
 #main-table {
   max-width: 1000px;
 }
+
+.new-transaction-button {
+  padding-right: 175px;
+}
