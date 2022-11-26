@@ -8,5 +8,6 @@ namespace BudgetApp.Models.Repositories
     public interface ITransactionRepository
     {
         IEnumerable<Transaction> AllTransactions { get; }
+        IEnumerable<Transaction> GetTransactionsByName(string name);
     }
 }

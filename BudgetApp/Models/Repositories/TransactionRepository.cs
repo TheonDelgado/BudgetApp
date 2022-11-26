@@ -16,5 +16,9 @@ namespace BudgetApp.Models.Repositories
         }
 
         public IEnumerable<Transaction> AllTransactions => context.Transactions;
+        public IEnumerable<Transaction> GetTransactionsByName(string searchedName)
+        {
+            return from t in context.Transactions where string.IsNullOrEmpty(searchedName) || t.Name.StartsWith(searchedName) orderby t.Name select t;
+        } 
     }
 }

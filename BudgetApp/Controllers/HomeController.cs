@@ -37,7 +37,7 @@ namespace BudgetApp.Controllers
         {
             var indexView = new IndexViewModel()
             {
-                SearchedTransactions = transactionRepository.AllTransactions.Where(t => t.Name == searchedName).ToList<Transaction>()
+                SearchedTransactions = transactionRepository.GetTransactionsByName(searchedName).ToList<Transaction>()
             };
 
             return View(indexView);
