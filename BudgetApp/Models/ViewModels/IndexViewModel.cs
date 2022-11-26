@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace BudgetApp.Models.ViewModels
 {
-    public class IndexModel
+    public class IndexViewModel
     {
         public List<Transaction> Transactions { get; set; }
+        public List<Transaction> SearchedTransactions { get; set; }
     }
 }

@@ -21,11 +21,23 @@ namespace BudgetApp.Controllers
             this.context = context;
         }
 
+        [HttpGet]
         public IActionResult Index() 
         {
-            var indexView = new IndexModel()
+            var indexView = new IndexViewModel()
             {
                 Transactions = transactionRepository.AllTransactions.ToList<Transaction>()
+            };
+
+            return View(indexView);
+        }
+
+        [HttpPost]
+        public IActionResult Index(string searchedName)
+        {
+            var indexView = new IndexViewModel()
+            {
+                SearchedTransactions = transactionRepository.AllTransactions.Where(t => t.Name == searchedName).ToList<Transaction>()
             };
 
             return View(indexView);
