@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "BudgetApp\\bin\\Release\\net7.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/e35ab4c0-0f1e-4d82-b0b2-44509ef8168b/AppServices/subscriptions/e35ab4c0-0f1e-4d82-b0b2-44509ef8168b/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/BudgetApp-TheonDelgado"
+}

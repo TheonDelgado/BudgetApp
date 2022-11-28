@@ -13,12 +13,14 @@ namespace BudgetApp.Controllers
     public class HomeController : Controller
     {
         private readonly ITransactionRepository transactionRepository;
+        private readonly ICategoryRepository categoryRepository;
         private readonly AppDbContext context;
 
-        public HomeController(ITransactionRepository transactionRepository , AppDbContext context)
+        public HomeController(ITransactionRepository transactionRepository , ICategoryRepository categoryRepository, AppDbContext context)
         {
             this.transactionRepository = transactionRepository;
             this.context = context;
+            this.categoryRepository = categoryRepository;
         }
 
         [HttpGet]
@@ -26,7 +28,8 @@ namespace BudgetApp.Controllers
         {
             var indexView = new IndexViewModel()
             {
-                Transactions = transactionRepository.AllTransactions.ToList<Transaction>()
+                Transactions = transactionRepository.AllTransactions.ToList<Transaction>(),
+                Categories = categoryRepository.AllCategories.ToList<Category>()
             };
 
             return View(indexView);
@@ -37,10 +40,22 @@ namespace BudgetApp.Controllers
         {
             var indexView = new IndexViewModel()
             {
-                SearchedTransactions = transactionRepository.GetTransactionsByName(searchedName).ToList<Transaction>()
+                SearchedTransactions = transactionRepository.GetTransactionsByName(searchedName).ToList<Transaction>(),
+                Categories = categoryRepository.AllCategories.ToList<Category>()
             };
 
             return View(indexView);
+        }
+
+        [HttpPost]
+        public IActionResult EditTransaction(string transactionName)
+        {
+            var indexViewModel = new IndexViewModel()
+            {
+                Categories = categoryRepository.AllCategories.ToList<Category>()
+            };
+
+            return View(indexViewModel);
         }
     }
 }

@@ -1,0 +1,34 @@
+@model NewTransactionViewModel
+
+@{
+    List<SelectListItem> list = new List<SelectListItem>();
+
+    foreach(var category in Model.Categories)
+    {
+      list.Add(new SelectListItem{ Text = category.CategoryName, Value = category.Id.ToString()});
+    }
+}
+
+<div class="modal-fade" id="edit-transaction" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-transaction">Transaction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Home" asp-action="Edit" method="post">
+                    <div class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="col addTransactionPage">
+                            <label class="sr-only" for="">Choose Category: &nbsp;</label>
+                            @Html.DropDownListFor(model => model.SelectedCategory, list)
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

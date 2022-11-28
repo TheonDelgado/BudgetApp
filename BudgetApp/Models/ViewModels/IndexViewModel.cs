@@ -9,5 +9,7 @@ namespace BudgetApp.Models.ViewModels
     {
         public List<Transaction> Transactions { get; set; }
         public List<Transaction> SearchedTransactions { get; set; }
+        public List<Category> Categories { get; set; }
+        public Category SelectedCategory { get; set; }
     }
 }
