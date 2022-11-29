@@ -36,11 +36,11 @@ namespace BudgetApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string transactionName)
+        public IActionResult Index(string searchedName)
         {
             var indexView = new IndexViewModel()
             {
-                SearchedTransactions = transactionRepository.FilterTransactions(transactionName),
+                SearchedTransactions = transactionRepository.FilterTransactions(searchedName),
                 Categories = categoryRepository.AllCategories.ToList()
             };
 
