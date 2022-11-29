@@ -1,134 +1,131 @@
 ﻿@model IndexViewModel
 @{
-  List<SelectListItem> list = new List<SelectListItem>();
+    List<SelectListItem> list = new List<SelectListItem>();
 
-    foreach(var category in Model.Categories)
+    foreach (var category in Model.Categories)
     {
-      list.Add(new SelectListItem{ Text = category.CategoryName, Value = category.Id.ToString()});
+        list.Add(new SelectListItem
+        {
+            Text = category.CategoryName,
+            Value = category.Id.ToString()
+        });
     }
 }
 
- <form method="post" asp-action="Index">
-   <input type="text" placeholder="Search..." name="searchedName" >
-   <button class="btn btn-primary" type="submit">Go</button>
- </form>
+
+
+
+
+
+<form method="post" asp-action="Index">
+    <input type="text" placeholder="Search..." name="searchedName">
+    <button class="btn btn-primary" type="submit">Go</button>
+</form>
 
 <br><br>
 
 <table class="table table-striped mainTable" id="main-table">
-    
-  <thead>
+
+    <thead>
     <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Name</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Category</th>
+        <th scope="col">Date</th>
+        <th scope="col">Name</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Category</th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-   @if(Model.Transactions != null)
-   {
-    @foreach(var transaction in Model.Transactions)
+    <tbody>
+    @if (Model.Transactions != null)
     {
-      <tr>
-        <td class="transaction-date">@transaction.Date.ToString("MM/dd/yyyy h:mm")</td>
-        <td class="transaction-name">@transaction.Name</td>
-        <td class="transaction-amount">@transaction.Amount</td>
-        @if(@transaction.CategoryId == 1)
+        @foreach (var transaction in Model.Transactions)
         {
-          <td class="transaction-category">Business</td>
+            <tr>
+                <td class="transaction-date">@transaction.Date.ToString("MM/dd/yyyy h:mm")</td>
+                <td class="transaction-name">@transaction.Name</td>
+                <td class="transaction-amount">@transaction.Amount</td>
+                @if (@transaction.CategoryId == 1)
+                {
+                    <td class="transaction-category">Business</td>
+                }
+                else if (@transaction.CategoryId == 2)
+                {
+                    <td class="transaction-category">Food</td>
+                }
+                else if (@transaction.CategoryId == 3)
+                {
+                    <td class="transaction-category">Personal</td>
+                }
+                else
+                {
+                    <td class="transaction-category">Other</td>
+                }
+                <td>
+                    <a type="button"
+                            class="btn btn-primary"
+                            data-ajax="true"
+                            data-ajax-loading="#loading"
+                            data-ajax-mode="replace"
+                            data-ajax-update="#modal-body"
+                            href='@Url.Action("EditTransaction", "Transaction", new { id = transaction.Id })'
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                        Edit
+                    </a>
+                    <button type="button" class="btn btn-danger" asp-controller="Transaction" asp-action="DeleteTransaction">Delete</button>
+                </td>
+            </tr>
         }
-        else if(@transaction.CategoryId == 2)
-        {
-          <td class="transaction-category">Food</td>
-        }
-        else if(@transaction.CategoryId == 3)
-        {
-          <td class="transaction-category">Personal</td>
-        }
-        else 
-        {
-          <td class="transaction-category">Other</td>
-        }
-        <td>
-          <button type="button" class="openUpdateTransactionModalBtn btn btn-primary" asp-controller="Home" asp-action="EditTransaction">Edit</button>
-          <button type="button" class="btn btn-danger" asp-controller="Home" asp-action="DeleteTransaction">Delete</button>
-        </td>
-      </tr>
     }
-   }
 
-   @if(Model.SearchedTransactions != null)
-   {
-    foreach(var transaction in Model.SearchedTransactions)
+    @if (Model.SearchedTransactions != null)
     {
-      <tr>
-        <td>@transaction.Date.ToString("MM/dd/yyyy h:mm")</td>
-        <td>@transaction.Name</td>
-        <td>@transaction.Amount</td>
-        @if(@transaction.CategoryId == 1)
+        foreach (var transaction in Model.SearchedTransactions)
         {
-          <td>Business</td>
+            <tr>
+                <td>@transaction.Date.ToString("MM/dd/yyyy h:mm")</td>
+                <td>@transaction.Name</td>
+                <td>@transaction.Amount</td>
+                @if (@transaction.CategoryId == 1)
+                {
+                    <td>Business</td>
+                }
+                else if (@transaction.CategoryId == 2)
+                {
+                    <td>Food</td>
+                }
+                else if (@transaction.CategoryId == 3)
+                {
+                    <td>Personal</td>
+                }
+                else
+                {
+                    <td>Other</td>
+                }
+                <td>
+                    <form method="post" action="">
+
+                    </form>
+                </td>
+            </tr>
         }
-        else if(@transaction.CategoryId == 2)
-        {
-          <td>Food</td>
-        }
-        else if(@transaction.CategoryId == 3)
-        {
-          <td>Personal</td>
-        }
-        else 
-        {
-          <td>Other</td>
-        }
-        <td>
-          <form method="post" action="">
-           
-            
-          </form>
-        </td>
-      </tr>
     }
-   }
-  </tbody>
+    </tbody>
 </table>
 
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalToggleLabel">Update Transaction</h5>
-    </div>
-    <div class="modal-body">
-      <form method="post" asp-action="NewTransaction">
-        <div class="form-row align-items-center">
-          <div class="col-auto my-1">
-            <div class="col addTransactionPage">
-              <label class="sr-only" for="">Choose Category: &nbsp;</label>
-              @Html.DropDownListFor(model => model.SelectedCategory, list)
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <br><hr class="newTransactionBreak">
-            <div class="col addTransactionPage">
-              <label class="sr-only" for="">Name: &nbsp</label>
-              <input type="text" id="name" name="Name" size="12">
+            <div class="modal-body" id="modal-body">
+                Loading...
             </div>
-            <br><hr class="newTransactionBreak">
-            <div class="col addTransactionPage">
-              <label class="sr-only" for="">Amount: &nbsp</label>
-              <input type="text" id="amount" name="Amount" size="12">
-            </div>
-            <br><hr class="newTransactionBreak">
-          </div>
-          <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+           
         </div>
-      </form>
     </div>
-    </div>
-  </div>
 </div>
-
-
-

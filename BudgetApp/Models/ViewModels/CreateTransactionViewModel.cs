@@ -6,12 +6,9 @@ using BudgetApp.Models.Repositories;
 
 namespace BudgetApp.Models.ViewModels
 {
-    public class NewTransactionViewModel
+    public class CreateTransactionViewModel
     {
         public List<Category> Categories { get; set; }
-        public int SelectedCategory { get; set; }
-        public DateTime Date { get; set; }
-        public string Name { get; set; }
-        public float Amount { get; set; }
+        public Transaction Transaction { get; set; } = new Transaction();
     }
 }

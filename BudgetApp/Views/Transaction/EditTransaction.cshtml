@@ -1,0 +1,40 @@
+@model CreateTransactionViewModel
+
+@{
+    List<SelectListItem> list = new List<SelectListItem>();
+
+    foreach (var category in Model.Categories)
+    {
+        list.Add(new SelectListItem
+        {
+            Text = category.CategoryName,
+            Value = category.Id.ToString()
+        });
+    }
+}
+
+<form asp-controller="Transaction" asp-action="EditTransaction" method="post">
+    
+    @* invisible data inside the form - we need this to include the data in the post request to the EditTransaction controller endpoint*@
+    @Html.HiddenFor(model => model.Transaction.Date)
+    @Html.HiddenFor(model => model.Transaction.Id)
+    
+    <div class="text-danger"></div>
+    <div class="form-group">
+        <div class="col addTransactionPage">
+            <label class="sr-only" for="">Choose Category: &nbsp;</label>
+            @Html.DropDownListFor(model => model.Transaction.CategoryId, list)
+        </div>
+        <div class="col addTransactionPage">
+            <label class="sr-only" for="">Name: &nbsp;</label>
+            @Html.TextBoxFor(model => model.Transaction.Name)
+        </div>
+        <div class="col addTransactionPage">
+            <label class="sr-only" for="">Amount: &nbsp;</label>
+            @Html.TextBoxFor(model => model.Transaction.Amount)
+        </div>
+    </div>
+     <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary">Save</button>
+    </div>
+</form>

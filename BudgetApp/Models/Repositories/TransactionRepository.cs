@@ -15,10 +15,30 @@ namespace BudgetApp.Models.Repositories
             this.context = context;
         }
 
-        public IEnumerable<Transaction> AllTransactions => context.Transactions;
-        public IEnumerable<Transaction> GetTransactionsByName(string searchedName)
+        public List<Transaction> AllTransactions => context.Transactions.ToList();
+
+        public void SaveTransaction(Transaction transaction)
         {
-            return from t in context.Transactions where string.IsNullOrEmpty(searchedName) || t.Name.StartsWith(searchedName) orderby t.Name select t;
-        } 
+            context.Transactions.Add(transaction);
+            context.SaveChanges();
+        }
+        
+        public void UpdateTransaction(Transaction transaction)
+        {
+            context.Transactions.Update(transaction);
+            context.SaveChanges();
+        }
+        
+        public Transaction GetTransactionsById(Guid id)
+        {
+            return context.Transactions.FirstOrDefault(t => t.Id == id); // .FirstOrDefault() executes the query against the database
+        }
+
+        public List<Transaction> FilterTransactions(string name)
+        {
+            var query = context.Transactions.Where(t => t.Name.Contains(name));
+
+            return query.ToList(); // .ToList() executes the query against the database
+        }
     }
 }

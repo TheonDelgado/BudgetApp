@@ -1,0 +1,39 @@
+@model CreateTransactionViewModel
+
+@{
+    List<SelectListItem> list = new List<SelectListItem>();
+
+    foreach (var category in Model.Categories)
+    {
+        list.Add(new SelectListItem
+        {
+            Text = category.CategoryName,
+            Value = category.Id.ToString()
+        });
+    }
+}
+
+<form method="post" asp-action="CreateTransaction">
+    <div class="form-row align-items-center">
+        <div class="col-auto my-1">
+            <div class="col addTransactionPage">
+                <label class="sr-only" for="">Choose Category: &nbsp;</label>
+                @Html.DropDownListFor(model => model.Transaction.CategoryId, list)
+            </div>
+            <br><hr class="newTransactionBreak">
+            <div class="col addTransactionPage">
+                <label class="sr-only" for="">Name: &nbsp</label>
+                 @Html.TextBoxFor(model => model.Transaction.Name, new { @class="form-control" })
+            </div>
+            <br><hr class="newTransactionBreak">
+            <div class="col addTransactionPage">
+                <label class="sr-only" for="">Amount: &nbsp</label>
+               @Html.TextBoxFor(model => model.Transaction.Amount, new { @class="form-control" })
+            </div>
+            <br><hr class="newTransactionBreak">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </div>
+    </div>
+</form>

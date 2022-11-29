@@ -28,34 +28,25 @@ namespace BudgetApp.Controllers
         {
             var indexView = new IndexViewModel()
             {
-                Transactions = transactionRepository.AllTransactions.ToList<Transaction>(),
-                Categories = categoryRepository.AllCategories.ToList<Category>()
+                Transactions = transactionRepository.AllTransactions.ToList(),
+                Categories = categoryRepository.AllCategories.ToList()
             };
 
             return View(indexView);
         }
 
         [HttpPost]
-        public IActionResult Index(string searchedName)
+        public IActionResult Index(string transactionName)
         {
             var indexView = new IndexViewModel()
             {
-                SearchedTransactions = transactionRepository.GetTransactionsByName(searchedName).ToList<Transaction>(),
-                Categories = categoryRepository.AllCategories.ToList<Category>()
+                SearchedTransactions = transactionRepository.FilterTransactions(transactionName),
+                Categories = categoryRepository.AllCategories.ToList()
             };
 
             return View(indexView);
         }
 
-        [HttpPost]
-        public IActionResult EditTransaction(string transactionName)
-        {
-            var indexViewModel = new IndexViewModel()
-            {
-                Categories = categoryRepository.AllCategories.ToList<Category>()
-            };
-
-            return View(indexViewModel);
-        }
+       
     }
 }

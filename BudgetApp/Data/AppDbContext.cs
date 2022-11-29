@@ -34,13 +34,6 @@ namespace BudgetApp.Data
             {
                 category.HasKey(c => c.Id);
             });
-            
-            
-            //seed categories
-            modelBuilder.Entity<Category>().HasData(new Category { Id = 1, CategoryName = "Business" });
-            modelBuilder.Entity<Category>().HasData(new Category { Id = 2, CategoryName = "Food" });
-            modelBuilder.Entity<Category>().HasData(new Category { Id = 3, CategoryName = "Personal" });
-            modelBuilder.Entity<Category>().HasData(new Category { Id = 4, CategoryName = "Other" });
         }
     }
 }

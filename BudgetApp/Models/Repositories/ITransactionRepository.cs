@@ -7,7 +7,10 @@ namespace BudgetApp.Models.Repositories
 {
     public interface ITransactionRepository
     {
-        IEnumerable<Transaction> AllTransactions { get; }
-        IEnumerable<Transaction> GetTransactionsByName(string name);
+        List<Transaction> AllTransactions { get; }
+        Transaction GetTransactionsById(Guid id);
+        void SaveTransaction(Transaction transaction);
+        void UpdateTransaction(Transaction transaction);
+        List<Transaction> FilterTransactions(string name);
     }
 }
