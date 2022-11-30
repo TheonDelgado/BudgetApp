@@ -12,17 +12,21 @@
     }
 }
 
-
-
-
-
-<span class="top-part">
-    <form class="searchForm" method="post" asp-action="Index">
-        <input type="text" placeholder="Search..." name="searchedName">
-        <button class="btn btn-primary" type="submit">Go</button>
-    </form>
-    <a class="addButton btn btn-success" asp-controller="Transaction" asp-action="CreateTransaction">+</a>
-</span>
+<header>
+    <div id="tableheader">
+        <span class="top-part d-flex flex-row">
+        <form class="searchForm d-flex flex-row navbar-search" method="post" asp-action="Index">
+            <div class="input-group">
+                <input class="form-control bg-light border-0 small" type="text" placeholder="Search..." name="searchedName">
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Go</button>
+            </div>
+        </form>
+        <a class="addButton btn btn-success" asp-controller="Transaction" asp-action="CreateTransaction">+</a>
+        </span>
+    </div>
+</header>
 
 <br><br>
 

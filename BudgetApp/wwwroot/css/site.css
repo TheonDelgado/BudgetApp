@@ -79,7 +79,6 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   max-width: inherit;
-  padding-right: 500px;
 }
 
 .header {
@@ -112,4 +111,24 @@ footer {
   background-color: #d56b6be7;
   border: 1px;
   border-color: white;
+}
+
+#tableheader { 
+  margin-top: 35px;
+}
+
+.bg-light {
+  bacakground-color: rgba(128, 128, 128, 0.785)
+}
+
+.searchForm {
+  justify-content: space-between;
+}
+
+.input-group {
+  margin-right: 10px;
+}
+
+.input-group-append { 
+  margin-left: 10px;
 }
