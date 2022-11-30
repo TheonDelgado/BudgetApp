@@ -28,6 +28,14 @@ namespace BudgetApp.Models.Repositories
             context.Transactions.Update(transaction);
             context.SaveChanges();
         }
+
+        public void DeleteTransaction(Guid transactionId)
+        {
+            var transaction = context.Transactions.FirstOrDefault(t => t.Id == transactionId);
+
+            context.Transactions.Remove(transaction);
+            context.SaveChanges();
+        }
         
         public Transaction GetTransactionsById(Guid id)
         {

@@ -14,9 +14,9 @@
 }
 
 <form method="post" asp-action="CreateTransaction">
-    <div class="form-row align-items-center">
+    <div class=" addTransactionPageBackground form-row align-items-center">
         <div class="col-auto my-1">
-            <div class="col addTransactionPage">
+            <div class="col addTransaction">
                 <label class="sr-only" for="">Choose Category: &nbsp;</label>
                 @Html.DropDownListFor(model => model.Transaction.CategoryId, list)
             </div>

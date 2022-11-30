@@ -16,17 +16,19 @@
 
 
 
-
-<form method="post" asp-action="Index">
-    <input type="text" placeholder="Search..." name="searchedName">
-    <button class="btn btn-primary" type="submit">Go</button>
-</form>
+<span class="top-part">
+    <form class="searchForm" method="post" asp-action="Index">
+        <input type="text" placeholder="Search..." name="searchedName">
+        <button class="btn btn-primary" type="submit">Go</button>
+    </form>
+    <a class="addButton btn btn-success" asp-controller="Transaction" asp-action="CreateTransaction">+</a>
+</span>
 
 <br><br>
 
 <table class="table table-striped mainTable" id="main-table">
 
-    <thead>
+    <thead class="tablehead">
     <tr>
         <th scope="col">Date</th>
         <th scope="col">Name</th>
@@ -35,12 +37,12 @@
     </tr>
     </thead>
 
-    <tbody>
+    <tbody class="tablebody">
     @if (Model.Transactions != null)
     {
         @foreach (var transaction in Model.Transactions)
         {
-            <tr>
+            <tr class="tablerow">
                 <td class="transaction-date">@transaction.Date.ToString("MM/dd/yyyy h:mm")</td>
                 <td class="transaction-name">@transaction.Name</td>
                 <td class="transaction-amount">@transaction.Amount</td>
@@ -64,7 +66,7 @@
                     <a type="button"
                             class="btn btn-primary"
                             data-ajax="true"
-                            data-ajax-loading="#loading"
+
                             data-ajax-mode="replace"
                             data-ajax-update="#modal-body"
                             href='@Url.Action("EditTransaction", "Transaction", new { id = transaction.Id })'
@@ -72,7 +74,7 @@
                             data-bs-target="#exampleModal">
                         Edit
                     </a>
-                    <button type="button" class="btn btn-danger" asp-controller="Transaction" asp-action="DeleteTransaction">Delete</button>
+                    <a type="button" class="btn btn-danger" asp-controller="Transaction" asp-action="DeleteTransaction" asp-route-transactionId="@transaction.Id">Delete</a>
                 </td>
             </tr>
         }
@@ -82,7 +84,7 @@
     {
         foreach (var transaction in Model.SearchedTransactions)
         {
-            <tr>
+            <tr class="tablerow">
                 <td>@transaction.Date.ToString("MM/dd/yyyy h:mm")</td>
                 <td>@transaction.Name</td>
                 <td>@transaction.Amount</td>

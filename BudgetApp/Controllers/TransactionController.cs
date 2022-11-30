@@ -36,7 +36,7 @@ namespace BudgetApp.Controllers
         public IActionResult CreateTransaction(CreateTransactionViewModel createTransactionViewModel)
         {
             createTransactionViewModel.Transaction.Id = Guid.NewGuid();
-            createTransactionViewModel.Transaction.Date = DateTimeOffset.Now;
+            createTransactionViewModel.Transaction.Date = DateTime.Now;
 
             transactionRepository.SaveTransaction(createTransactionViewModel.Transaction);
 
@@ -65,9 +65,10 @@ namespace BudgetApp.Controllers
             return RedirectToAction("Index", "Home");
         }
         
-        [HttpPost]
-        public IActionResult DeleteTransaction(CreateTransactionViewModel createTransactionViewModel)
+        [HttpGet("[controller]/[action]/{transactionId}")]
+        public IActionResult DeleteTransaction([FromRoute] Guid transactionId)
         {
+            transactionRepository.DeleteTransaction(transactionId);
 
             return RedirectToAction("Index", "Home");
         }

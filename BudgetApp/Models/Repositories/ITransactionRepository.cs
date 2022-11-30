@@ -11,6 +11,7 @@ namespace BudgetApp.Models.Repositories
         Transaction GetTransactionsById(Guid id);
         void SaveTransaction(Transaction transaction);
         void UpdateTransaction(Transaction transaction);
+        void DeleteTransaction(Guid transactionId);
         List<Transaction> FilterTransactions(string name);
     }
 }
