@@ -13,6 +13,7 @@ html {
   position: relative;
   min-height: 100%;
   background-image: url("../img/stripes.png");
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -97,6 +98,18 @@ footer {
   background-color: #0b7189;
 }
 
+.btn-primary:hover {
+  background-color: #80ccdd;
+  border: 1px;
+  border-color: white;
+}
+
 .btn-danger { 
-  background-color: rgba(194, 20, 20, 0.906);
+  background-color: #c21414e7;
+}
+
+.btn-danger:hover {
+  background-color: #d56b6be7;
+  border: 1px;
+  border-color: white;
 }
