@@ -109,9 +109,18 @@
                     <td>Other</td>
                 }
                 <td>
-                    <form method="post" action="">
+                    <a type="button"
+                            class="btn btn-primary"
+                            data-ajax="true"
 
-                    </form>
+                            data-ajax-mode="replace"
+                            data-ajax-update="#modal-body"
+                            href='@Url.Action("EditTransaction", "Transaction", new { id = transaction.Id })'
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                        Edit
+                    </a>
+                    <a type="button" class="btn btn-danger" asp-controller="Transaction" asp-action="DeleteTransaction" asp-route-transactionId="@transaction.Id">Delete</a>
                 </td>
             </tr>
         }

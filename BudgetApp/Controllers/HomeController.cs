@@ -44,6 +44,11 @@ namespace BudgetApp.Controllers
                 Categories = categoryRepository.AllCategories.ToList()
             };
 
+            if(searchedName == null) 
+            {
+                indexView.SearchedTransactions = transactionRepository.AllTransactions;
+            }
+
             return View(indexView);
         }
 

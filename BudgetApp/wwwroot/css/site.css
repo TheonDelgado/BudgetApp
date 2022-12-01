@@ -40,9 +40,8 @@ footer {
   padding: 12px;
   max-width: 250px;
   max-height: 75px;
-  justify-content: start;
-  align-content: center;
   display: flex;
+  flex-direction: row;
 }
 
 .addTransactionBreak { 
@@ -118,7 +117,7 @@ footer {
 }
 
 .bg-light {
-  bacakground-color: rgba(128, 128, 128, 0.785)
+  background-color: rgba(128, 128, 128, 0.785)
 }
 
 .searchForm {
@@ -131,4 +130,9 @@ footer {
 
 .input-group-append { 
   margin-left: 10px;
+}
+
+.sr-only {
+  max-width: fit-content;
+  max-height: fit-content;
 }

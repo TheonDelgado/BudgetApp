@@ -13,21 +13,23 @@
     }
 }
 
+<div id="tableheader"></div>
+
 <form method="post" asp-action="CreateTransaction">
-    <div class=" addTransactionPageBackground form-row align-items-center">
+    <div class=" addTransactionPageBackground form-row align-items-center d-flex flex-column">
         <div class="col-auto my-1">
             <div class="col addTransaction">
-                <label class="sr-only" for="">Choose Category: &nbsp;</label>
+                <label>Choose Category: &nbsp;</label>
                 @Html.DropDownListFor(model => model.Transaction.CategoryId, list)
             </div>
             <br><hr class="newTransactionBreak">
             <div class="col addTransactionPage">
-                <label class="sr-only" for="">Name: &nbsp</label>
-                 @Html.TextBoxFor(model => model.Transaction.Name, new { @class="form-control" })
+                <label class="p-2">Name: &nbsp;</label>
+                @Html.TextBoxFor(model => model.Transaction.Name, new { @class="form-control" })
             </div>
             <br><hr class="newTransactionBreak">
             <div class="col addTransactionPage">
-                <label class="sr-only" for="">Amount: &nbsp</label>
+                <label class="p-2">Amount: &nbsp;</label>
                @Html.TextBoxFor(model => model.Transaction.Amount, new { @class="form-control" })
             </div>
             <br><hr class="newTransactionBreak">
