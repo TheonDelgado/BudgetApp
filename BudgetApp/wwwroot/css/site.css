@@ -136,3 +136,7 @@ footer {
   max-width: fit-content;
   max-height: fit-content;
 }
+
+.mainIndex {
+  justify-content: space-around;
+}
